@@ -79,4 +79,6 @@ dependencies {
     implementation(libs.hilt.android)
     kapt(libs.hilt.android.compiler)
     implementation(libs.androidx.hilt.navigation.compose)
+
+    implementation("androidx.lifecycle:lifecycle-runtime-compose-android:2.8.1")
 }

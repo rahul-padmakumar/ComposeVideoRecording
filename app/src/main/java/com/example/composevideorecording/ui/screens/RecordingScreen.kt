@@ -15,6 +15,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.safeDrawingPadding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.CheckCircle
+import androidx.compose.material.icons.filled.Place
 import androidx.compose.material.icons.filled.PlayArrow
 import androidx.compose.material.icons.filled.Refresh
 import androidx.compose.material3.Icon
@@ -30,12 +31,15 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.core.content.ContextCompat
 import com.example.composevideorecording.ui.components.CameraPreview
 import com.example.composevideorecording.utilities.CAMERA_PERMISSION
+import com.example.composevideorecording.utilities.FILE_NAME
 import com.example.composevideorecording.utilities.isPermissionGranted
 import java.io.File
 import java.util.concurrent.TimeUnit
 
 @Composable
-fun RecordingScreen(){
+fun RecordingScreen(
+    playRecording: () -> Unit
+){
     val context = LocalContext.current
     val cameraController = remember {
         LifecycleCameraController(
@@ -83,6 +87,12 @@ fun RecordingScreen(){
                     contentDescription = "Video recording"
                 )
             }
+            IconButton(onClick = playRecording, modifier = Modifier.align(Alignment.BottomEnd)) {
+                Icon(
+                    imageVector = Icons.Filled.Place,
+                    contentDescription = "Play recording"
+                )
+            }
             recordingState.value?.let {
                 IconButton(onClick = {
                     if(isPaused){
@@ -117,7 +127,7 @@ private fun startRecording(
         return
     }
     recording.value = cameraController.startRecording(
-        FileOutputOptions.Builder(File(context.filesDir, "recordng.mp4")).build(),
+        FileOutputOptions.Builder(File(context.filesDir, FILE_NAME)).build(),
         AudioConfig.create(true),
         ContextCompat.getMainExecutor(context)
     ) { event ->
