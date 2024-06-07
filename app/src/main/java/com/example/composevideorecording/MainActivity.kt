@@ -1,6 +1,7 @@
 package com.example.composevideorecording
 
 import android.Manifest
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.pm.PackageManager
 import android.os.Bundle
@@ -131,10 +132,14 @@ class MainActivity : ComponentActivity() {
         ) == PackageManager.PERMISSION_GRANTED
     }
 
+    @SuppressLint("MissingPermission")
     private fun startRecording(context: Context, cameraController: LifecycleCameraController) {
         if (recording.value != null){
             recording.value?.close()
             recording.value = null
+            return
+        }
+        if(!isPermissionGranted(context)){
             return
         }
         recording.value = cameraController.startRecording(
