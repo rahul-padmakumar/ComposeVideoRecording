@@ -1,6 +1,5 @@
 package com.example.composevideorecording.ui.screens.player
 
-import android.net.Uri
 import androidx.lifecycle.ViewModel
 import androidx.media3.common.MediaItem
 import androidx.media3.common.Player

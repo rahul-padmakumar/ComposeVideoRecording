@@ -1,6 +1,5 @@
 package com.example.composevideorecording.utilities.file_checker
 
-import android.app.Application
 import android.content.Context
 import android.net.Uri
 import dagger.hilt.android.qualifiers.ApplicationContext
