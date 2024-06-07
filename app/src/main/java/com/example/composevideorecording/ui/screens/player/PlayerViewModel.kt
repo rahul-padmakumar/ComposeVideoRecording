@@ -4,7 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.media3.common.MediaItem
 import androidx.media3.common.Player
 import com.example.composevideorecording.utilities.FILE_NAME
-import com.example.composevideorecording.utilities.file_checker.FileChecker
+import com.example.composevideorecording.utilities.file_checker.FileHelper
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -14,7 +14,7 @@ import javax.inject.Inject
 @HiltViewModel
 class PlayerViewModel @Inject constructor(
     val player: Player,
-    private val fileChecker: FileChecker
+    private val fileChecker: FileHelper
 ): ViewModel(){
 
     private val _playerState = MutableStateFlow(PlayerUIState())

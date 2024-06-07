@@ -6,7 +6,7 @@ import dagger.hilt.android.qualifiers.ApplicationContext
 import java.io.File
 import javax.inject.Inject
 
-class FileCheckerImpl @Inject constructor(@ApplicationContext private val context: Context): FileChecker {
+class FileHelperImpl @Inject constructor(@ApplicationContext private val context: Context): FileHelper {
     override fun getFileUri(fileName: String): Uri =
         Uri.fromFile(File(context.filesDir, fileName))
 
